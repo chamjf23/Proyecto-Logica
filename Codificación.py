@@ -45,37 +45,26 @@ class letrasss(object):
         d=t+"="+o
         return d
     
-    def columnayfila2(self,lista): # Regla2 No puede haber el mismo numero en la misma columna o fila
+    def columnayfila2(self,l): #regla 3
         o=""
         t=""
-        conectivos=""
-        letras=""
         e=0
-        for i in lista:
+        for i in l:
             if self.f==i.f and self.c==i.c:
-                t=str(self.l)
+                t="("+str(self.l)+")"
             elif self.f==i.f or self.c==i.c:
                 if e==0:    
-                    o+=(str(i.l)+"-")
+                    o+="-("+str(i.l)+")"
                     e+=1
-                    letras += str(i.f)
-                    conectivos += "-"
                 else:
-                    o+=str(i.l)+"-"+"Y"
-                    letras+=str(i.l)
-                    conectivos+="Y-"
+                    o+="Y-("+str(i.l)+")"
             else:
                 if e==0:    
-                    o+=str(i.l)
+                    o+="("+str(i.l)+")"
                     e+=1
-                    letras += str(i.l)
                 else:
-                    o+=str(i.l)+"O"
-                    letras+=str(i.l)
-                    conectivos+="O"
-        polaca=conectivos+t+letras
-        polaca_inversa = polaca[::-1]
-        d="\n"+polaca_inversa+"="
+                    o+="O("+str(i.l)+")"
+        d=t+"=("+o+")"
         return d
     
 def sumas(n): #Regla 1 las sumas de las filas y columnas nos dan como resultado el numero n dado por el usuario
