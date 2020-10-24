@@ -117,7 +117,24 @@ def sumas(n): #Regla 1 las sumas de las filas y columnas nos dan como resultado 
     regla_final=regla1+regla2
     return regla_final
 
-     
+def suma_c_f(n):
+    return polacainversa(suma_filas(n)+suma_columna(n))
+
+
+def polaca_arbol(f):
+    F = String2Tree(f)
+    letrasProposicionales=[chr(x) for x in range(256, 600)]
+    conectivosBinarios=["O", "Y", ">", "="]
+    negacion = ["-"]
+    if F.l in letrasProposicionales:
+         return F.l
+    elif F.l in negacion:
+        return "-"+polaca_arbol(f.right)
+    elif F.l in conectivosBinarios:
+        return F.l+polaca_arbol(F.left)+polaca_arbol(F.right)
+    
+def polacainversa(f):
+    return polaca_arbol(f)[::-1]
 
 class Tree(object):
     def __init__(self, label, left, right):
@@ -237,9 +254,8 @@ for cod in letras:
     #print (f)
     #print (b)
     #print (p)
-X=sumas(3) 
+X=suma_c_f(3) 
 print(X)
-print(Inorderp(String2Tree(X)))
 
     
 
